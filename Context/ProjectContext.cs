@@ -4,10 +4,19 @@ namespace projectef.Models;
 
 public class ProjectefContext : DbContext
 {
+    protected readonly IConfiguration _config;
+
+    public ProjectefContext(IConfiguration configuration)
+    {
+        _config = configuration;
+    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(_config.GetConnectionString("conexionProjectEF"));
+    }
+    
     public DbSet<Categoria> Categorias { get; set; }
     public DbSet<Tarea> Tareas { get; set; }
-
-    public ProjectefContext(DbContextOptions<ProjectefContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -35,6 +44,5 @@ public class ProjectefContext : DbContext
             tarea.Property(p => p.FechaLimite);
         });
     }
-
-
+    
 }
