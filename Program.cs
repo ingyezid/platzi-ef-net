@@ -38,7 +38,7 @@ app.MapGet("/dbconexion", async ([FromServices] ProjectefContext dbContext) =>
 app.MapGet("/api/tareas", async ([FromServices] ProjectefContext dbContext) =>
 {
     return Results.Ok(
-        dbContext.Tareas.Include(p=>p.Categoria).Where(p=>p.PrioridadTarea == Prioridad.Baja)    
+        dbContext.Tareas.Include(p=>p.Categoria).Where(p=>p.PrioridadTarea == Prioridad.Alta)    
     );
 
 });
@@ -50,4 +50,18 @@ app.MapGet("/api/categorias", async ([FromServices] ProjectefContext dbContext) 
 });
 
 
+app.MapPost("/api/tareas", async ([FromServices] ProjectefContext dbContext, [FromBody] Tarea tarea) =>
+{
+    tarea.TareaId = Guid.NewGuid();
+    tarea.FechaCreacion = DateTime.Now;
+    await dbContext.AddAsync(tarea);
+    // await dbContext.Tareas.AddAsync(tarea);
+    await dbContext.SaveChangesAsync();
+
+    return Results.Ok();
+
+});
+
 app.Run();
+
+
