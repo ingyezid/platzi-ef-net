@@ -5,8 +5,9 @@ using projectef.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ProjectefContext>(p => p.UseInMemoryDatabase("ProjectEF"));
+// builder.Services.AddDbContext<ProjectefContext>(p => p.UseInMemoryDatabase("ProjectEF"));
 
+builder.Services.AddSqlServer<ProjectefContext>("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ProjectEF;user id=admin;password=admin123");
 
 var app = builder.Build();
 
