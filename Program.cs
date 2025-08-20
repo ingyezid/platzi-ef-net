@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // builder.Services.AddDbContext<ProjectefContext>(p => p.UseInMemoryDatabase("ProjectEF"));
 
-builder.Services.AddSqlServer<ProjectefContext>("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ProjectEF;user id=admin;password=admin123");
+builder.Services.AddSqlServer<ProjectefContext>(builder.Configuration.GetConnectionString("conexionProjectEF"));
 
 var app = builder.Build();
 
