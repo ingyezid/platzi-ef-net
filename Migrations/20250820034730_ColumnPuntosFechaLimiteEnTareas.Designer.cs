@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using projectef.Models;
 
@@ -11,9 +12,10 @@ using projectef.Models;
 namespace projectef.Migrations
 {
     [DbContext(typeof(ProjectefContext))]
-    partial class ProjectefContextModelSnapshot : ModelSnapshot
+    [Migration("20250820034730_ColumnPuntosFechaLimiteEnTareas")]
+    partial class ColumnPuntosFechaLimiteEnTareas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

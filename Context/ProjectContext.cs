@@ -17,6 +17,7 @@ public class ProjectefContext : DbContext
             categoria.HasKey(p => p.CategoriaId);
             categoria.Property(p => p.Nombre).IsRequired().HasMaxLength(150);
             categoria.Property(p => p.Descripcion);
+            categoria.Property(p => p.Peso);
 
         });
 
@@ -30,6 +31,8 @@ public class ProjectefContext : DbContext
             tarea.Property(p => p.PrioridadTarea);
             tarea.Property(p => p.FechaCreacion);
             tarea.Ignore(p => p.Resumen);
+            tarea.Property(p => p.Puntos);
+            tarea.Property(p => p.FechaLimite);
         });
     }
 

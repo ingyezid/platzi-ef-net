@@ -25,6 +25,11 @@ public class Tarea
 
     // [NotMapped]
     public string Resumen { get; set; }
+
+    public int Puntos { get; set; }
+
+    public DateTime FechaLimite { get; set; }
+
 }
 
 public enum Prioridad
