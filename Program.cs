@@ -33,6 +33,21 @@ app.MapGet("/dbconexion", async ([FromServices] ProjectefContext dbContext) =>
     string sumaResultado = " <p> " + result0 + " <br/> " + result1 + " <br/> " + result2 + " <br/> " + result3 + "</p>";
 
     return Results.Ok(sumaResultado);
-}); 
+});
+
+app.MapGet("/api/tareas", async ([FromServices] ProjectefContext dbContext) =>
+{
+    return Results.Ok(
+        dbContext.Tareas.Include(p=>p.Categoria).Where(p=>p.PrioridadTarea == Prioridad.Baja)    
+    );
+
+});
+
+app.MapGet("/api/categorias", async ([FromServices] ProjectefContext dbContext) =>
+{
+    return Results.Ok(dbContext.Categorias);
+
+});
+
 
 app.Run();
